@@ -5,7 +5,7 @@ name: Array
 
 description: Mock Array
 
-requires: Type
+requires: [Type, String]
 
 provides: Array
 

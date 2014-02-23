@@ -41,12 +41,13 @@ module.exports = function(grunt) {
     var registry = {}, buffer = [], included = {}, set = [];
 
     function resolveDeps(definition){
+      if (included[definition.key]) return;
+      included[definition.key] = true;
+
       definition.requires.forEach(function(key){
         resolveDeps(registry[key]);
       });
-      if (included[definition.key]) return;
       buffer.push(definition);
-      included[definition.key] = true;
     }
 
     var options = this.options({
@@ -89,7 +90,6 @@ module.exports = function(grunt) {
         });
 
       });
-
 
       (options.only ? toArray(options.only) : set).forEach(function(key){
         if (!(key in registry)) throw new Error('Missing key: ' + key);

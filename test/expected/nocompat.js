@@ -41,11 +41,30 @@ Array.implement({
 /*
 ---
 
+name: String
+
+description: Mock String
+
+requires: [Type, Array]
+
+provides: String
+
+...
+*/
+
+String.implement({
+
+
+});
+
+/*
+---
+
 name: Array
 
 description: Mock Array
 
-requires: Type
+requires: [Type, String]
 
 provides: Array
 
