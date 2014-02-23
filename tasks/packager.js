@@ -90,13 +90,12 @@ module.exports = function(grunt) {
 
       });
 
-      if (!options.only){
-        // include all sources
-        for (var key in registry) if (key in registry) resolveDeps(registry[key]);
-        if (set.length != buffer.length) return grunt.log.error('Could not include all sources.');
-      } else {
-        toArray(options.only).forEach(resolveDeps);
-      }
+
+      (options.only ? toArray(options.only) : set).forEach(function(key){
+        if (!(key in registry)) throw new Error('Missing key: ' + key);
+        resolveDeps(registry[key]);
+      });
+
 
       buffer = buffer.map(function(def){ return def.source; }).join(options.separator);
 
