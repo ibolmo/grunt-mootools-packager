@@ -1,7 +1,7 @@
 {
   "name": "grunt-mootools-packager",
   "description": "Grunt task for MooTools Packager projects.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/ibolmo/grunt-packager",
   "author": {
     "name": "Olmo Maldonado",
