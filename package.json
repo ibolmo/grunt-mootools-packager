@@ -1,5 +1,5 @@
 {
-  "name": "grunt-packager",
+  "name": "grunt-mootools-packager",
   "description": "Grunt task for MooTools Packager projects.",
   "version": "0.0.1",
   "homepage": "https://github.com/ibolmo/grunt-packager",
