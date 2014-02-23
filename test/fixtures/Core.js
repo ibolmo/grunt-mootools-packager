@@ -44,4 +44,10 @@ var Hash = this.Hash = new Type('Hash', function(object){
 
 //</1.2compat>
 
+// <1.2compat>
+
+var testObscurePackagerBlocks;
+
+// </1.2compat>
+
 })();

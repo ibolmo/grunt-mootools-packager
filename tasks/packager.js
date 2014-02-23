@@ -13,7 +13,7 @@ var YAML = require('js-yaml');
 module.exports = function(grunt) {
 
 	var DESC_REGEXP = /\/\*\s*^---([.\s\S]*)^(?:\.\.\.|---)\s*\*\//m;
-	var STRIP_EXP = ['\\/[\\/*]\s*<', '>([.\\s\\S]*?)<\\/', '>(?:\\s*\\*\\/)?'];
+	var STRIP_EXP = ['\\/[\\/*]\\s*<', '>([.\\s\\S]*?)<\\/', '>(?:\\s*\\*\\/)?'];
 
 	function validDefinition(object) {
 		return 'name' in object && 'provides' in object;
