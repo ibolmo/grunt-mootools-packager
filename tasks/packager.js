@@ -13,7 +13,8 @@ var YAML = require('js-yaml');
 module.exports = function(grunt) {
 
 	var DESC_REGEXP = /\/\*\s*^---([.\s\S]*)^(?:\.\.\.|---)\s*\*\//m;
-	var STRIP_EXP = ['\\/[\\/*]\\s*<', '>([.\\s\\S]*?)<\\/', '>(?:\\s*\\*\\/)?'];
+	var SL_STRIP_EXP = ['\\/[\\/*]\\s*<', '>(.*?)<\\/', '>(?:\\s*\\*\\/)?'];
+	var ML_STRIP_EXP = ['\\/[\\/*]\\s*<', '>([.\\s\\S]*?)<\\/', '>(?:\\s*\\*\\/)?'];
 
 	function validDefinition(object) {
 		return 'name' in object && 'provides' in object;
@@ -101,8 +102,9 @@ module.exports = function(grunt) {
 
 			// strip blocks
 			toArray(options.strip).forEach(function(block){
-				var regexp = RegExp(STRIP_EXP.join(block), 'gm');
-				buffer = buffer.replace(regexp, '');
+				buffer = buffer
+					.replace(RegExp(SL_STRIP_EXP.join(block), 'gm'), '')
+					.replace(RegExp(ML_STRIP_EXP.join(block), 'gm'), '');
 			});
 
 			grunt.file.write(f.dest, buffer);
