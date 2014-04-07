@@ -66,12 +66,22 @@ module.exports = function(grunt) {
 			// read files and populate registry map
 			files.forEach(function(filepath){
 
+				if (typeof options.name != 'string'){
+
+					var projectName; 
+					for (var prj in options.name) {
+
+						if(~filepath.indexOf(options.name[prj])) projectName = prj;
+					}
+					if (!projectName) projectName = Object.keys(options.name)[0];
+				}			
+
 				var source = grunt.file.read(filepath);
 				var definition = YAML.load(source.match(DESC_REGEXP)[1] || '');
 
 				if (!definition || !validDefinition(definition)) return grunt.log.error('invalid definition: ' + filepath);
 
-				definition.package = options.name;
+				definition.package = projectName || options.name;
 				definition.source = source;
 				definition.key = getPrimaryKey(definition);
 				definition.provides = toArray(definition.provides);
