@@ -45,9 +45,11 @@ module.exports = function(grunt) {
 			if (included[definition.key]) return;
 			included[definition.key] = true;
 
-			definition.requires.forEach(function(key){
-				resolveDeps(registry[key]);
-			});
+			if (!options.ignoreYAMLheader){
+				definition.requires.forEach(function(key){
+					resolveDeps(registry[key]);
+				});
+			}
 			buffer.push(definition);
 		}
 
