@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/all.js': 'test/fixtures/*.js',
-        },
+        }
       },
       nocompat_options: {
         options: {
@@ -33,13 +33,45 @@ module.exports = function(grunt) {
         },
         files: {
           'tmp/nocompat.js': 'test/fixtures/*.js',
-        },
+        }
       },
+      multipackage: {
+        options: {
+          name: {
+            ProjectB: 'test/fixtures/Project_B',
+            ProjectA: 'test/fixtures/Project_A'
+          }
+        },
+        src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
+        dest: 'tmp/multipackage.js'
+      },
+      multipackage_partial_simple: {
+        options: {
+          only: ['ProjectA/ProjectA.Secondary'],
+          name: {
+            ProjectB: 'test/fixtures/Project_B',
+            ProjectA: 'test/fixtures/Project_A'
+          }
+        },
+        src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
+        dest: 'tmp/multipackage_partial_simple.js'
+      },
+      multipackage_partial_widcard: {
+        options: {
+          only: 'ProjectB/*',
+          name: {
+            ProjectB: 'test/fixtures/Project_B',
+            ProjectA: 'test/fixtures/Project_A'
+          }
+        },
+        src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
+        dest: 'tmp/multipackage_partial_widcard.js'
+      }
     },
 
     nodeunit: {
       tests: ['test/*_test.js'],
-    },
+    }
 
   });
 
