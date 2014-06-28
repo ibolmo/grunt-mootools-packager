@@ -34,6 +34,17 @@ module.exports = function(grunt) {
 		}).concat(getPrimaryKey(definition));
 	}
 
+	// matches project name with component's path
+	function getProjectName(componentPath, optionsName){
+		if (typeof optionsName == 'string') return optionsName;
+		var projectName;
+		for (var prj in optionsName){
+			if(~componentPath.indexOf(optionsName[prj])) projectName = prj;
+		}
+		if (!projectName) grunt.fail.warn('Missing name in options for component with path: ' + componentPath);
+		return projectName;
+	}
+
 	// wraps item in an array if it isn't one
 	function toArray(object){
 		if (!object) return [];
@@ -108,22 +119,12 @@ module.exports = function(grunt) {
 			// read files and populate registry map
 			files.forEach(function(filepath){
 
-				if (typeof options.name != 'string'){
-
-					var projectName;
-					for (var prj in options.name) {
-
-						if(~filepath.indexOf(options.name[prj])) projectName = prj;
-					}
-					if (!projectName) projectName = Object.keys(options.name)[0];
-				}
-
 				var source = grunt.file.read(filepath);
 				var definition = YAML.load(source.match(DESC_REGEXP)[1] || '');
 
 				if (!definition || !validDefinition(definition)) return grunt.log.error('invalid definition: ' + filepath);
 				definition.filepath = filepath;
-				definition.package = projectName || options.name;
+				definition.package = getProjectName(filepath, options.name);
 				definition.source = source;
 				definition.key = getPrimaryKey(definition);
 				definition.provides = toArray(definition.provides);

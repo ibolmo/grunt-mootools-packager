@@ -82,7 +82,7 @@ Default value: `false`
 Ignores the YAML headers for dependency loading.
 
 #### options.only
-Type: `Array`
+Type: `String` or `Array`
 
 The specific components or packages to compile (with their dependencies).
 
