@@ -177,9 +177,12 @@ module.exports = function(grunt) {
 
 			grunt.log.verbose.ok('successfully compiled', f.dest, 'with dependencies:', only || 'all');
 
+			if (options.noOutput) return;
 			grunt.file.write(f.dest, buffer);
 		});
 
+		var cb = options.callback;
+		if (cb) cb(buffer);
 	});
 
 };

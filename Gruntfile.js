@@ -66,7 +66,25 @@ module.exports = function(grunt) {
         },
         src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
         dest: 'tmp/multipackage_partial_widcard.js'
-      }
+      },
+      callback: {
+        options: {
+          name: 'Test',
+		  callback: function(data){ grunt.file.write('tmp/callbackOutput.js', data);}
+        },
+        files: {
+          'tmp/all.js': 'test/fixtures/*.js',
+        }
+      },
+      noOutput: {
+        options: {
+          name: 'Test',
+		  noOutput: true
+        },
+        files: {
+          'tmp/noOutput.js': 'test/fixtures/*.js',
+        }
+      },
     },
 
     nodeunit: {

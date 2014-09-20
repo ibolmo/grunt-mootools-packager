@@ -1,23 +1,23 @@
 {
   "name": "grunt-mootools-packager",
   "description": "Grunt task for MooTools Packager projects.",
-  "version": "0.3.0",
-  "homepage": "https://github.com/ibolmo/grunt-packager",
+  "version": "0.4.0",
+  "homepage": "https://github.com/ibolmo/grunt-mootools-packager",
   "author": {
     "name": "Olmo Maldonado",
     "email": "olmo.maldonado@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ibolmo/grunt-packager.git"
+    "url": "git://github.com/ibolmo/grunt-mootools-packager.git"
   },
   "bugs": {
-    "url": "https://github.com/ibolmo/grunt-packager/issues"
+    "url": "https://github.com/ibolmo/grunt-mootools-packager/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/ibolmo/grunt-packager/blob/master/LICENSE-MIT"
+      "url": "https://github.com/ibolmo/grunt-mootools-packager/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
