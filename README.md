@@ -50,6 +50,16 @@ Default value: `grunt.util.linefeed`
 
 The delimeter to join all the source files together.
 
+#### options.callback
+Type: `Function`
+
+The function to be called when compile is done. The compiled content will passed as first parameter into the callback function.
+
+#### options.noOutput
+Type: `Boolean`
+
+If `true` no files will be written. Defaults to false.
+
 #### options.name
 Type: `String` or `Object`
 
