@@ -53,7 +53,7 @@ The delimeter to join all the source files together.
 #### options.callback
 Type: `Function`
 
-The function to be called when compile is done. The compiled content will passed as first parameter into the callback function.
+The function to be called when compilation is finished. The compiled content will passed as the first argument in the callback function.
 
 #### options.noOutput
 Type: `Boolean`
