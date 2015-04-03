@@ -143,6 +143,11 @@ grunt.initConfig({
 });
 ```
 
+#### options.exclude
+Type: `Array`
+
+The specific dependencies packages to exclude from the compilation.
+
 ### Other Usage Examples
 
 #### Default Options

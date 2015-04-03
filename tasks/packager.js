@@ -165,6 +165,18 @@ module.exports = function(grunt) {
 			// load each component into the buffer list
 			(only ? toArray(only) : set).forEach(loadComponent);
 
+			// remove unwanted dependencies
+			if (options.exclude){
+				var toExclude = toArray(options.exclude); 
+				buffer = buffer.filter(function(def){
+					var shouldKeep = toExclude.filter(function(dependency){
+						var match = dependency.match(/([^\*]+)/);
+						return match ? def.key.indexOf(match[1]) != 0 : true;
+					});
+					return shouldKeep.length;
+				});
+			}
+
 			// convert the buffer into the actual source
 			buffer = buffer.map(function(def){ return def.source; }).join(options.separator);
 

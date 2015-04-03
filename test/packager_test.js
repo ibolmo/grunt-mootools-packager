@@ -54,6 +54,16 @@ exports.packager = {
 
     test.done();
   },
+  // multi project build with wildcard option `exclude: 'package/*'`
+  multipackage_partial_exclude: function(test){
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/multipackage_partial_exclude.js');
+    var expected = grunt.file.read('test/expected/multipackage_partial_exclude.js');
+    test.equal(actual, expected, 'should be exact for multipackage build without specified excluded components.');
+
+    test.done();
+  },
   // option `callback`
   callback: function(test){
     test.expect(1);

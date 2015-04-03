@@ -56,6 +56,18 @@ module.exports = function(grunt) {
         src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
         dest: 'tmp/multipackage_partial_simple.js'
       },
+      multipackage_partial_exclude: {
+        options: {
+          only: 'ProjectB/*',
+		  exclude: ['ProjectA/*'],
+          name: {
+            ProjectB: 'test/fixtures/Project_B',
+            ProjectA: 'test/fixtures/Project_A'
+          }
+        },
+        src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
+        dest: 'tmp/multipackage_partial_exclude.js'
+      },
       multipackage_partial_widcard: {
         options: {
           only: 'ProjectB/*',
