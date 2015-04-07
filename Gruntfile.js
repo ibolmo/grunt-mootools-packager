@@ -59,7 +59,7 @@ module.exports = function(grunt) {
       multipackage_partial_exclude: {
         options: {
           only: 'ProjectB/*',
-		  exclude: ['ProjectA/*'],
+          exclude: ['ProjectA/*'],
           name: {
             ProjectB: 'test/fixtures/Project_B',
             ProjectA: 'test/fixtures/Project_A'
