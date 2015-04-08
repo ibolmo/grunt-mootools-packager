@@ -159,6 +159,8 @@ module.exports = function(grunt) {
 			}
 			// support global options.only as well as .only per build
 			var only = options.only || f.only;
+			// same deal with exclude option
+			var exclude = options.exclude || f.exclude;
 
 			grunt.log.verbose.writeln('compiling', f.dest, 'with dependencies:', only || 'all');
 
@@ -166,8 +168,8 @@ module.exports = function(grunt) {
 			(only ? toArray(only) : set).forEach(loadComponent);
 
 			// remove unwanted dependencies
-			if (options.exclude){
-				var toExclude = toArray(options.exclude); 
+			if (exclude){
+				var toExclude = toArray(exclude);
 				buffer = buffer.filter(function(def){
 					var shouldKeep = toExclude.filter(function(dependency){
 						var match = dependency.match(/([^\*]+)/);
