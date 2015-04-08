@@ -5,7 +5,7 @@ var grunt = require('grunt');
 exports.packager = {
 
   // simple compat build, one project
-  default_options: function(test){ 
+  default_options: function(test){
     test.expect(1);
 
     var actual = grunt.file.read('tmp/all.js');
@@ -44,6 +44,16 @@ exports.packager = {
 
     test.done();
   },
+  // multi project build with simple option `only: 'package'`
+  multipackage_partial_simple_with_only_as_root: function(test){
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/multipackage_partial_simple_with_only_as_root.js');
+    var expected = grunt.file.read('test/expected/multipackage_partial_simple.js');
+    test.equal(actual, expected, 'should be exact for multipackage build with specified "only".');
+
+    test.done();
+  },
   // multi project build with wildcard option `only: 'package/*'`
   multipackage_partial_widcard: function(test){
     test.expect(1);
@@ -59,6 +69,16 @@ exports.packager = {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/multipackage_partial_exclude.js');
+    var expected = grunt.file.read('test/expected/multipackage_partial_exclude.js');
+    test.equal(actual, expected, 'should be exact for multipackage build without specified excluded components.');
+
+    test.done();
+  },
+  // multi project build with wildcard option `exclude: 'package/*'`
+  multipackage_partial_exclude_with_exclude_as_root: function(test){
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/multipackage_partial_exclude_with_exclude_as_root.js');
     var expected = grunt.file.read('test/expected/multipackage_partial_exclude.js');
     test.equal(actual, expected, 'should be exact for multipackage build without specified excluded components.');
 
