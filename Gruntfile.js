@@ -56,6 +56,41 @@ module.exports = function(grunt) {
         src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
         dest: 'tmp/multipackage_partial_simple.js'
       },
+      multipackage_partial_simple_with_only_as_root: {
+        options: {
+          name: {
+            ProjectB: 'test/fixtures/Project_B',
+            ProjectA: 'test/fixtures/Project_A'
+          }
+        },
+        only: ['ProjectA/ProjectA.Secondary'],
+        src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
+        dest: 'tmp/multipackage_partial_simple_with_only_as_root.js'
+      },
+      multipackage_partial_exclude: {
+        options: {
+          only: 'ProjectB/*',
+          exclude: ['ProjectA/*'],
+          name: {
+            ProjectB: 'test/fixtures/Project_B',
+            ProjectA: 'test/fixtures/Project_A'
+          }
+        },
+        src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
+        dest: 'tmp/multipackage_partial_exclude.js'
+      },
+      multipackage_partial_exclude_with_exclude_as_root: {
+        options: {
+          only: 'ProjectB/*',
+          exclude: ['ProjectA/*'],
+          name: {
+            ProjectB: 'test/fixtures/Project_B',
+            ProjectA: 'test/fixtures/Project_A'
+          }
+        },
+        src: ['test/fixtures/Project_A/*.js', 'test/fixtures/Project_B/*.js'],
+        dest: 'tmp/multipackage_partial_exclude_with_exclude_as_root.js'
+      },
       multipackage_partial_widcard: {
         options: {
           only: 'ProjectB/*',
@@ -70,7 +105,7 @@ module.exports = function(grunt) {
       callback: {
         options: {
           name: 'Test',
-		  callback: function(data){ grunt.file.write('tmp/callbackOutput.js', data);}
+          callback: function(data){ grunt.file.write('tmp/callbackOutput.js', data);}
         },
         files: {
           'tmp/all.js': 'test/fixtures/*.js',
@@ -79,7 +114,7 @@ module.exports = function(grunt) {
       noOutput: {
         options: {
           name: 'Test',
-		  noOutput: true
+          noOutput: true
         },
         files: {
           'tmp/noOutput.js': 'test/fixtures/*.js',

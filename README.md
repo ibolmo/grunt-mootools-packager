@@ -125,7 +125,7 @@ grunt.initConfig({
       ],
       only: [
         'More/Form.Validator'
-      ]
+      ],
       dest: 'form.validator.js'
     },
     // all of the More package and its requirements
@@ -136,12 +136,54 @@ grunt.initConfig({
       ],
       only: [
         'More/*'
-      ]
+      ],
       dest: 'more.js'
     }
   },
 });
 ```
+
+#### options.exclude
+Type: `Array`
+
+The specific dependencies packages to exclude from the compilation. This allows you to build a file and exclude some portion of it's dependencies. Example:
+
+```js
+grunt.initConfig({
+  packager: {
+    options: {
+      name: {
+        Core: 'js/mootools-core',
+        More: 'js/mootools-more'
+      }
+    },
+    // build only Core
+    all: {
+      src: [
+        'js/mootools-core/Source/**/*.js',
+      ],
+      only: ['Core/*'],
+      dest: 'mootools-core.js'
+    },
+    // the Form.Validator component and its requirements from
+    // More, but none of the dependencies from Core
+    formValidator: {
+      src: [
+        'js/mootools-core/Source/**/*.js',
+        'js/mootools-more/Source/**/*.js'
+      ],
+      only: [
+        'More/Form.Validator'
+      ],
+      exclude: [
+        'Core/*'
+      ],
+      dest: 'form.validator.js'
+    }
+  },
+});
+```
+
 
 ### Other Usage Examples
 
@@ -173,3 +215,24 @@ grunt.initConfig({
   },
 });
 ```
+
+
+#### Build-Specific Options
+```js
+grunt.initConfig({
+  packager: {
+    options: {
+      name: 'Core'
+    },
+    all: {
+      'dest/mootools.js': 'Source/**.js',
+    },
+    allWithoutCompat: {
+      strip: '.*compat',
+      src: 'Source/**.js',
+      dest: 'mootools-no-compat.js'
+    },
+  },
+});
+```
+

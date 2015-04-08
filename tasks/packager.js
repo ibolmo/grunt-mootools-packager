@@ -159,11 +159,25 @@ module.exports = function(grunt) {
 			}
 			// support global options.only as well as .only per build
 			var only = options.only || f.only;
+			// same deal with exclude option
+			var exclude = options.exclude || f.exclude;
 
 			grunt.log.verbose.writeln('compiling', f.dest, 'with dependencies:', only || 'all');
 
 			// load each component into the buffer list
 			(only ? toArray(only) : set).forEach(loadComponent);
+
+			// remove unwanted dependencies
+			if (exclude){
+				var toExclude = toArray(exclude);
+				buffer = buffer.filter(function(def){
+					var shouldKeep = toExclude.filter(function(dependency){
+						var match = dependency.match(/([^\*]+)/);
+						return match ? def.key.indexOf(match[1]) != 0 : true;
+					});
+					return shouldKeep.length;
+				});
+			}
 
 			// convert the buffer into the actual source
 			buffer = buffer.map(function(def){ return def.source; }).join(options.separator);
